@@ -2,7 +2,7 @@
 """
 Created on Tue May 30 16:37:43 2023
 
-@author: Eraldo
+@author: Rebeca
 """
 
 import math
