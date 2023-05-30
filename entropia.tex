@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\setlength{\parindent}{1cm}
+\usepackage{graphicx}
+
+\begin{document}
+
+\begin{titlepage}
+
+    \centering
+    \vspace*{4,8cm}
+    \Huge \textbf{Entropia de Dados}
+
+    \vspace{1cm}
+    \Large 1º Ciclo - Ciência de Dados
+    
+    \vspace{0.5cm}
+    \Large Ana Luiza Ribeiro de Santana da Silva
+    
+    \Large Diego Conceição Santos de Faria
+
+    \Large Rebeca Nascimento Oliveira 
+    
+    \vspace{1cm}
+    \Large Junho, 2023
+    
+
+\end{titlepage}
+
+\section*{Base de dados}
+
+A base de dados utilizada foi adquirida a partir de um conjunto de dados proveniente da University of California - Irvine, uma instituição de ensino superior localizada nos Estados Unidos. Esta base de dados consiste em informações qualitativas e foi obtida diretamente do site UCI Machine Learning Repository.
+
+A base de dados compreendia as medidas de comprimento e largura da sépala em centímetros, bem como as medidas de comprimento e largura da pétala em centímetros. Com base nas dimensões da largura e do comprimento, a classificação das amostras podia ser atribuída a uma das três classes: Iris Setosa, Iris Versicolour ou Iris Virginica.
+
+\section*{Resultados obtidos}
+As classes presentes no conjunto de dados são as seguintes:
+
+\begin{itemize}
+    \item Iris Setosa;
+    \item Iris Versicolour;
+    \item Iris Virginica.
+\end{itemize}
+
+\includegraphics[width = 10cm]{flores de íris.png}
+
+\vspace{0,5cm}
+
+O dataset é composto por 150 instâncias distribuídas igualmente em 3 classes, onde cada classe representa um tipo de planta de íris. Nesse contexto, uma das classes é linearmente separável das outras duas, o que implica que é possível traçar uma linha ou plano no espaço de atributos que permite separar essa classe das demais. No entanto, as duas últimas classes não são linearmente separáveis entre si, o que significa que não é possível encontrar uma linha ou plano que as separe de forma linear. Isso indica que essas duas classes apresentam sobreposição em seus padrões de atributos e não podem ser claramente distinguidas por meio de uma separação linear. Portanto, é necessário utilizar métodos de classificação mais complexos para uma distinção precisa entre essas classes.
+
+\vspace{0,5cm}
+
+A entropia foi calculada por intermédio desse código:
+
+\begin{verbatim}
+import numpy as np
+import pandas as pd
+import math
+
+dados = pd.read_csv('D:\Downlods\iris.csv', delimiter=',')
+coluna_qualitativa = dados['class']
+frequencia = coluna_qualitativa.value_counts()
+proporcao = frequencia / len(coluna_qualitativa)
+entropia = -sum(proporcao * np.log2(proporcao))
+
+print('Entropia: ', entropia)
+\end{verbatim}
+
+Para realizar o cálculo da entropia máxima, o seguinte código foi utilizado:
+
+\begin{verbatim}
+import math
+
+def calcular_entropia_maxima(base_dados):
+    total_registros = len(base_dados)
+    valores_unicos = set(base_dados)
+    num_valores_unicos = len(valores_unicos)
+    probabilidade = 1 / num_valores_unicos
+    entropia_maxima = -1 * sum(probabilidade * math.log2(probabilidade) 
+    for n in range(num_valores_unicos))
+    return entropia_maxima
+
+dados = 'D:\Downlods\iris.csv'
+entropia_max = calcular_entropia_maxima(dados)
+print(f"A entropia máxima da base de dados é: {entropia_max}")
+\end{verbatim}
+
+\section*{Conclusão}
+\begin{itemize}
+    \item Resultado da entropia: 1.584962500721156
+    \item Resultado da entropia máxima: 3.8073549220576055
+\end{itemize}
+
+\includegraphics[width = 11cm]{console.png}
+
+\vspace{0,5cm}
+
+Ao analisarmos os valores obtidos, é possível observar que os dados apresentam um nível moderado de aleatoriedade.
+
+\end{document}
